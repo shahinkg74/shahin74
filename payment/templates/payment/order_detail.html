@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block title %}تسویه حساب{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-5">
+            <br>
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex:2"><strong>نام</strong></div>
+                    <div style="flex:2"><strong>قیمت</strong></div>
+
+                </div>
+                {% for value in order.items.all %}
+                <div class="cart-row">
+                    <div style="flex:2"><p>{{ value.course.title }}</p></div>
+                    <div style="flex:2"><p>{{ value.price|intcomma:False}} ریال </p></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="box-element">
+                <br>
+                <table class="table" style="margin: auto;">
+                    <tr>
+                        <th><h5>جمع سبد خرید: <strong>{{ order.total_price|intcomma:False }}</strong></h5></th>
+                        <th>
+                            <form action="{% url 'payment:request' order.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-bank">
+                                    اقدام به پرداخت
+                                </button>
+                            </form>
+                        </th>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

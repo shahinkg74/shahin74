@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} لیست دوره ها {% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        {% for video in videos %}
+        <div class="col-sm-3 col-lg-3">
+            <div class="card" style="height: 100%; width: 90%;">
+                <!-- <img src="{{ course.banner.url }}" class="card-img-top" alt="..." height="90%" width="90%"> -->
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ video.title }}</h5>
+                    <p class="card-text card-detail">{{ video.teacher }}</p>
+                    <a href="{{ video.get_absolute_url }}" class="btn btn-primary btn-detail">تماشا ویدیو</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<head>
+    {% include 'includes/head.html' %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+{% block style %}{% endblock style %}
+
+<body>
+    {% include 'includes/navbar.html' %}
+    {% include 'includes/messages.html' %}
+    <div class="jumbotron">
+        {% block content %} {% endblock content %}
+    </div>
+
+    {% block script %}{% endblock script %}
+
+</body>
+
+</html>

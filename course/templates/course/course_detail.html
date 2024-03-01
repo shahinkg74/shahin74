@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} دوره {{ course.title }} {% endblock title %}
+
+{% block content %}
+
+    <div class="detail">
+        <!-- BREADCRUMB -->
+        <nav aria-label="breadcrumb" dir="ltr">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'course:course_list' %}">دوره ها</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ course.title }}</li>
+            </ol>
+        </nav>
+        <!-- END BREADCRUMB -->
+
+        <img src="{{ course.banner.url }}" class="img-fluid detail-img" alt="{{ course.title }}">
+        <p class="lead detail-lead">
+            {{ course.title }}
+        </p>
+        <hr style="width: 50%; margin: auto;">
+        <p class="detail-description">{{ course.description|safe }}</p>
+        <hr style="width: 50%; margin: auto;">
+        <form action="{% url 'payment:cart_add_course' course.id %}" method="post">
+			{% csrf_token %}
+			<div class="d-grid gap-2 col-4 mx-auto mt-2" style="text-align: center; margin: auto;">
+                <input class="btn btn-primary videos-btn" type="submit" value="افزودن به سبد خرید">
+            </div>
+		</form>
+
+        <hr style="width: 50%; margin: auto; margin-top: 1%;">
+        <div class="d-grid gap-2 col-6 mx-auto mt-2">
+            <a href="{% url 'course:course_video_list' course.id course.slug %}" 
+                class="btn btn-primary videos-btn" type="button" target="_blank"
+            >
+                ویدیو های دوره
+            </a>
+        </div>     
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+<div class="header">
+    <div class="logo">
+        <a href="{% url 'home:home' %}" style="text-decoration: none; color: #FFFFFF;">توتوریالیسم</a>
+    </div>
+    <div class="menu">
+        <!-- DROPDOWN -->
+        <div class="dropdown">
+            <button class="dropbtn">حساب کاربری</button>
+            <div class="dropdown-content">
+                {% if request.user.is_authenticated %}
+                    <p class="link">
+                        <div class="title text text-center">{{ request.user.username }}</div>
+                        <div class="bar"></div>
+                    </p>
+                    <a href="{% url 'accounts:logout' %}" class="link">
+                        <div class="title">خروج</div>
+                        <div class="bar"></div>
+                    </a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="link">
+                        <div class="title">ورود</div>
+                        <div class="bar"></div>
+                    </a>
+                    <a href="{% url 'accounts:register' %}" class="link">
+                        <div class="title">ثبت نام</div>
+                        <div class="bar"></div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{% url 'course:course_list' %}" class="link">
+            <div class="title">دوره ها</div>
+            <div class="bar"></div>
+        </a>
+        <a href="{% url 'video:short_video_list' %}" class="link">
+            <div class="title">ویدیو های کوتاه</div>
+            <div class="bar"></div>
+        </a>
+        <a href="{% url 'payment:cart_detail' %}" class="link">
+            <div class="title">سبد خرید</div>
+            <div class="bar"></div>
+        </a>
+        <!-- END DROPDOWN -->
+    </div>
+</div>

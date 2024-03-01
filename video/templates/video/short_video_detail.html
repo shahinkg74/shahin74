@@ -1,0 +1,25 @@
+{% extends 'base_video_detail.html' %}
+
+{% block title %} {{ video.title }} {% endblock title %}
+
+{% block content %}
+    <div class="detail">
+        <div class="jumbotron">
+            <h3 style="text-align: center; margin-top: 2%;">
+                <a href="{% url 'home:home' %}" class="btn btn-primary videos-btn">بازگشت به صفحه اصلی سایت</a>
+            </h3>
+            <!-- BREADCRUMB -->
+            <nav aria-label="breadcrumb" dir="ltr">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'video:short_video_list' %}">ویدیو های کوتاه</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ video.title }}</li>
+                </ol>
+            </nav>
+            <!-- END BREADCRUMB -->
+        </div>
+        <video controls width="70%" style="margin-left: 15%; margin-top: 5%;">
+            <source src="{{ video.video.url }}" />
+        </video>
+    </div>
+{% endblock content %}

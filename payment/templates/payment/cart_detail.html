@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} سبد خرید {% endblock title %}
+
+{% block content %}
+
+    {% if cart != None %}
+        <div class="row">
+            <div class="col-lg-5">
+                <br>
+                <div class="box-element">
+                    <div class="cart-row">
+                        <div style="flex:2"><strong>نام</strong></div>
+                        <div style="flex:2"><strong>قیمت</strong></div>
+                        <div style="flex:1"><strong>حذف</strong></div>
+
+                    </div>
+                    {% for value in cart %}
+                    <div class="cart-row">
+                        <div style="flex:2"><p>{{ value.course.title }}</p></div>
+                        <div style="flex:2"><p>{{ value.price|intcomma:False}} ریال </p></div>
+                        <div style="flex:1">
+                            <a class="btn btn-sm btn-danger"
+                                href="{% url 'payment:cart_remove_course' value.course_id %}">
+                                حذف
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="box-element">
+
+                    <a  class="btn btn-outline-continue-shpping" href="{% url 'course:course_list' %}">&#x2190; ادامه خرید</a>
+
+                    <br>
+                    <br>
+                    <table class="table" style="margin: auto;">
+                        <tr>
+                            <th><h5>تعداد: <strong>{{ cart_length }}</strong></h5></th>
+                            <th><h5>جمع سبد خرید:<strong>{{ cart.total_price|intcomma:False }}</strong></h5></th>
+                            <th>
+                                <div class="d-grid gap-2 col-7 mx-auto mt-2">
+                                    <a href="{% url 'payment:order_creation' %}" style="float:right; margin:5px;"
+                                        class="btn btn-primary videos-btn" type="button" target="_blank"
+                                    >
+                                        تصویه حساب
+                                    </a>
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1 style="text-align:center;padding: 100px">سبد خرید شما خالی است</h1>
+    {% endif %}
+
+{% endblock content %}

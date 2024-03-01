@@ -1,0 +1,12 @@
+{% load static %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for msg in messages %}
+            <h5 class="alert alert-{{ msg.tags }}"
+                style="text-align: center; margin-top: 3%; color: #323232;">
+                {{ msg }}
+            </h5>
+        {% endfor %}
+    </ul>
+{% endif %}

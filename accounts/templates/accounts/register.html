@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}ثبت نام{% endblock %}
+
+{% block style %}
+<style>
+    body{
+        background-color: #d3cfcd;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="authentication" style="width: 35%;">
+        <h3>ثبت نام</h3>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <p class="text-danger">{{ form.errors.register_username }}</p>
+            <span class="label">{{ form.register_username.label }}</span><br>{{ form.register_username }}
+            <br>
+
+            <p class="text-danger">{{ form.errors.register_phone }}</p>
+            <span class="label">{{ form.register_phone.label }}</span><br>{{ form.register_phone }}
+            <br>
+
+            <p class="text-danger">{{ form.errors.register_email }}</p>
+            <span class="label">{{ form.register_email.label }}</span><br>{{ form.register_email }}
+            <br>
+
+            <p class="text-danger">{{ form.errors.register_password }}</p>
+            <span class="label">{{ form.register_password.label }}</span><br>{{ form.register_password }}
+            <br>
+
+            <span class="label">{{ form.register_password2.label }}</span><br>{{ form.register_password2 }}
+            <br>
+
+            <input type="submit" value="ثبت نام" class="btn">
+        </form>
+        <div class="pass-link">
+            <a href="#" >رمز عبور خود را فراموش کردید؟</a>
+        </div>
+    </div>
+
+{% endblock %}
